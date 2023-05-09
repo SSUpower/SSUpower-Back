@@ -1,4 +1,4 @@
-package SSUpower.demo;
+package map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class SimpleMessageDAO {
+public class MapDAO {
     @Autowired
     JdbcTemplate jt;
 
