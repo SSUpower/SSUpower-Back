@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://svc.sel3.cloudtype.app:31275
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: 'root'
+    password: '1234'
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: update
+        format_sql: true
+        dialect: org.hibernate.dialect.MariaDBDialect
+    show-sql: true
+    open-in-view: false
