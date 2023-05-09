@@ -20,8 +20,8 @@ public class MapDAO {
             mss.put("buildingId", rs.getInt(1));
             mss.put("classID", rs.getInt(2));
             mss.put("object", rs.getString(3));
-            mss.put("start", rs.getTime(4));
-            mss.put("end", rs.getTime(5));
+            mss.put("start", rs.getInt(4));
+            mss.put("end", rs.getInt(5));
             mss.put("day", rs.getString(6));
             mss.put("_id", rs.getInt(7));
             mss.put("building_name", rs.getString(8));
