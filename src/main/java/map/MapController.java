@@ -18,7 +18,9 @@ public class MapController {
     }
 
     @GetMapping("/select")
+
     public List<Map<String, ?>> getMap() {
+
         return mapDAO.selectAll();
     }
 }
