@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Map;
 @RestController
+@RequestMapping("/map")
 public class MapController {
-    @Autowired
-    MapDAO smd;
+
+    private final MapDAO mapDAO;
+
+    public MapController(MapDAO mapDAO) {
+        this.mapDAO = mapDAO;
+    }
 
     @GetMapping("/select")
     public List<Map<String, ?>> getMessage() {
-        return smd.selectAll();
+        return mapDAO.selectAll();
     }
 }
