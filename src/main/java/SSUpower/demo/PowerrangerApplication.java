@@ -5,7 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"map", "other.package.to.scan"})
+@ComponentScan({"map", "timetable"})
+//@ComponentScan(basePackages = {"timetable", "other.package.to.scan"})
 public class PowerrangerApplication {
 
     public static void main(String[] args) {
