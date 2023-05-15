@@ -17,11 +17,11 @@ public class TimeTableDAO {
 
         return jt.query("SELECT * FROM school_db.timetable;", (rs, rowNum) -> {
             Map<String, Object> temptable = new HashMap<>();
-            temptable.put("buildingId", rs.getInt(1));
-            temptable.put("classID", rs.getInt(2));
-            temptable.put("object", rs.getString(3));
-            temptable.put("start", rs.getInt(4));
-            temptable.put("end", rs.getInt(5));
+            temptable.put("room", '0'+ rs.getString(1) + rs.getString(2));
+            //temptable.put("classID", rs.getInt(2));
+            temptable.put("subject", rs.getString(3));
+            temptable.put("startTime", rs.getString(4));
+            temptable.put("endTime", rs.getString(5));
             temptable.put("day", rs.getString(6));
 
             //temptable.put("_id", rs.getInt(7));

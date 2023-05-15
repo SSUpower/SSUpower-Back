@@ -1,8 +1,6 @@
 package timetable;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -20,4 +18,10 @@ public class TimeTableController {
     public List<Map<String, ?>> getTimeTable() {
         return timetableDAO.selectTimeTable();
     }
+
+//    @GetMapping("/insert")
+//    public List<Map<String, ?>> setTimeTable(@RequestBody Map<String, ?> Submit) {
+//        //day, StartTime, EndTime, Subject, Room
+//        return;
+//    }
 }

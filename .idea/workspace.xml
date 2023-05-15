@@ -5,30 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="93ae9f21-164b-4155-a68e-90783ad852d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/SSUpower/demo/PowerrangerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/SSUpower/demo/PowerrangerApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/map/Map.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/map/MapController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/map/MapController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/map/MapDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/map/MapDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/timetable/TimeTableController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/timetable/TimeTableController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/PowerrangerApplication.class.uniqueId0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SSUpower/demo/PowerrangerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SSUpower/demo/PowerrangerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/map/Map.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/map/MapController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/map/MapDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/map/MapDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/timetable/TimeTable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/timetable/TimeTableController.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
