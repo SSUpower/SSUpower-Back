@@ -39,7 +39,7 @@ public class TimeTableDAO {
         });
     }
     public void insertTimeTable(Map<String, ?> timeTableData) {
-        String query = "INSERT INTO school_db.timetable (building_id, class_id, object, start, end, day) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO school_db.timetable (school_db.timetable.buildingID, school_db.timetable.classID, school_db.timetable.object, school_db.timetable.start, school_db.timetable.end, school_db.timetable.day) VALUES (?, ?, ?, ?, ?, ?)";
         jt.update(query, (PreparedStatement preparedStatement) -> {
             String room = (String) timeTableData.get("room");
 
