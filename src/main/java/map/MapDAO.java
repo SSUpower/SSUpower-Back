@@ -19,7 +19,7 @@ public class MapDAO {
         return jt.query("SELECT * FROM school_db.timetable, school_db.building where school_db.timetable.buildingID = school_db.building._id;", (rs, rowNum) -> {
             Map<String, Object> mss = new HashMap<>();
             mss.put("buildingId", rs.getInt(1));
-            mss.put("classID", rs.getInt(2));
+            mss.put("classID", rs.getString(2));
             mss.put("object", rs.getString(3));
             mss.put("start", rs.getString(4));
             mss.put("end", rs.getString(5));
