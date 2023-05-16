@@ -50,7 +50,7 @@ public class TimeTableDAO {
                 class_id = room.substring(3, 6);
                 building_id = room.substring(0, 2);
             } else if (room.length() == 6) {
-                class_id = room.substring(4, 7);
+                class_id = room.substring(4, 6);
                 building_id = room.substring(0, 3);
             }
 
