@@ -48,6 +48,6 @@ public class TimeTableDAO {
             preparedStatement.setString(4, (String) timeTableData.get("startTime"));
             preparedStatement.setString(5, (String) timeTableData.get("endTime"));
             preparedStatement.setString(6, (String) timeTableData.get("day"));
-        }
+        });
     }
 }
