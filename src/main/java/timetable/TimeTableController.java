@@ -24,7 +24,7 @@ public class TimeTableController {
 
 
     @PostMapping("/insert")
-    public List<Map<String, ?>> setTimeTable(@RequestBody Map<String, ?> Submit) {
+    public List<Map<String, ?>> setTimeTable(@RequestBody Map<String, String> Submit) {
         timetableDAO.insertTimeTable(Submit);
         return timetableDAO.selectTimeTable();
     }

@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.hibernate.engine.jdbc.Size.length;
+
 @Repository
 public class TimeTableDAO {
     @Autowired
@@ -39,9 +41,20 @@ public class TimeTableDAO {
     public void insertTimeTable(Map<String, ?> timeTableData) {
         String query = "INSERT INTO timetable (building_id, class_id, subject, startTime, endTime, day) VALUES (?, ?, ?, ?, ?, ?)";
         jt.update(query, (PreparedStatement preparedStatement) -> {
+
             String room = (String) timeTableData.get("room");
-            String building_id = room.substring(0, 2);
-            String class_id = room.substring(3, 5);
+
+            String class_id = "";
+            String building_id = "";
+            if(room.length() == 5){
+                class_id = room.substring(3, 5);
+                building_id = room.substring(0, 2);
+            }
+            else if(room.length()==6){
+                class_id = room.substring(4, 6);
+                building_id = room.substring(0,3);
+            }
+
             preparedStatement.setString(1, building_id);
             preparedStatement.setString(2, class_id);
             preparedStatement.setString(3, (String) timeTableData.get("subject"));
