@@ -37,29 +37,17 @@ public class TimeTableDAO {
         });
     }
     public void insertTimeTable(Map<String, ?> timeTableData) {
-        String url = "jdbc:mariadb://svc.sel3.cloudtype.app:31275";
-        String username = "root";
-        String password = "1234";
-
-        try (Connection conn = DriverManager.getConnection(url, username, password)) {
-            String query = "INSERT INTO timetable (building_id, class_id, subject, startTime, endTime, day) VALUES (?, ?, ?, ?, ?, ?)";
-            PreparedStatement statement = conn.prepareStatement(query);
-           
-            String room = (String)timeTableData.get("room");
+        String query = "INSERT INTO timetable (building_id, class_id, subject, startTime, endTime, day) VALUES (?, ?, ?, ?, ?, ?)";
+        jt.update(query, (PreparedStatement preparedStatement) -> {
+            String room = (String) timeTableData.get("room");
             String building_id = room.substring(0, 2);
             String class_id = room.substring(3, 5);
-            System.out.println("class_id = " + class_id);
-            statement.setString(1, building_id);
-            statement.setString(2, class_id);
-            statement.setString(3, (String) timeTableData.get("subject"));
-            statement.setString(4, (String) timeTableData.get("start"));
-            statement.setString(5, (String) timeTableData.get("end"));
-            statement.setString(6, (String) timeTableData.get("day"));
-            statement.addBatch();
-            statement.executeBatch();
-            statement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            preparedStatement.setString(1, building_id);
+            preparedStatement.setString(2, class_id);
+            preparedStatement.setString(3, (String) timeTableData.get("subject"));
+            preparedStatement.setString(4, (String) timeTableData.get("startTime"));
+            preparedStatement.setString(5, (String) timeTableData.get("endTime"));
+            preparedStatement.setString(6, (String) timeTableData.get("day"));
         }
     }
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 @RequestMapping("/timetable")
 @CrossOrigin(origins = "http://localhost:3000")
 
+
 public class TimeTableController {
 
     private final TimeTableDAO timetableDAO;
@@ -20,9 +21,10 @@ public class TimeTableController {
         return timetableDAO.selectTimeTable();
     }
 
+
+
     @PostMapping("/insert")
-    public List<Map<String, ?>> setTimeTable(@RequestBody Map<String, ?> Submit) {
+    public void setTimeTable(@RequestBody Map<String, ?> Submit) {
         timetableDAO.insertTimeTable(Submit);
-        return timetableDAO.selectTimeTable();
     }
 }
