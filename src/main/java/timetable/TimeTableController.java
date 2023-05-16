@@ -19,9 +19,9 @@ public class TimeTableController {
         return timetableDAO.selectTimeTable();
     }
 
-//    @GetMapping("/insert")
-//    public List<Map<String, ?>> setTimeTable(@RequestBody Map<String, ?> Submit) {
-//        //day, StartTime, EndTime, Subject, Room
-//        return;
-//    }
+    @PostMapping("/insert")
+    public List<Map<String, ?>> setTimeTable(@RequestBody Map<String, ?> Submit) {
+        timetableDAO.insertTimeTable(Submit);
+        return timetableDAO.selectTimeTable();
+    }
 }

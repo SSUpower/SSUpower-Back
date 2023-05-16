@@ -4,6 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,5 +35,29 @@ public class TimeTableDAO {
 
             return temptable;
         });
+    }
+    public void insertTimeTable(Map<String, ?> timeTableData) {
+        String url = "jdbc:mariadb://svc.sel3.cloudtype.app:31275";
+        String username = "root";
+        String password = "1234";
+
+        try (Connection conn = DriverManager.getConnection(url, username, password)) {
+            String query = "INSERT INTO timetable (building_id, class_id, subject, startTime, endTime, day) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement statement = conn.prepareStatement(query);
+            String room = (String)timeTableData.get("room");
+            String building_id = room.substring(0, 2);
+            String class_id = room.substring(3, 6);
+            statement.setString(1, building_id);
+            statement.setString(2, class_id);
+            statement.setString(3, (String) timeTableData.get("subject"));
+            statement.setString(4, (String) timeTableData.get("start"));
+            statement.setString(5, (String) timeTableData.get("end"));
+            statement.setString(6, (String) timeTableData.get("day"));
+            statement.addBatch();
+            statement.executeBatch();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
