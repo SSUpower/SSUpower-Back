@@ -47,10 +47,10 @@ public class TimeTableDAO {
             String building_id = "";
 
             if (room.length() == 5) {
-                class_id = room.substring(3, 5);
+                class_id = room.substring(3, 6);
                 building_id = room.substring(0, 2);
             } else if (room.length() == 6) {
-                class_id = room.substring(4, 6);
+                class_id = room.substring(4, 7);
                 building_id = room.substring(0, 3);
             }
 
