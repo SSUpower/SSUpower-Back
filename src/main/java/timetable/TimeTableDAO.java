@@ -42,11 +42,13 @@ public class TimeTableDAO {
         String password = "1234";
 
         try (Connection conn = DriverManager.getConnection(url, username, password)) {
-            String query = "INSERT INTO timetable (building_id, class_id, subject, startTime, endTime, day) VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO timetable (building_id, class_id, subject, startTime, endTime, day) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(query);
+           
             String room = (String)timeTableData.get("room");
             String building_id = room.substring(0, 2);
-            String class_id = room.substring(3, 6);
+            String class_id = room.substring(3, 5);
+            System.out.println("class_id = " + class_id);
             statement.setString(1, building_id);
             statement.setString(2, class_id);
             statement.setString(3, (String) timeTableData.get("subject"));
