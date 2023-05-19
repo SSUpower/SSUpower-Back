@@ -82,7 +82,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.PowerrangerApplication">
+  <component name="RunManager" selected="Spring Boot.SSUPowerBackApplication">
     <configuration name="PowerrangerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="SSUpower.demo.PowerrangerApplication" />
       <module name="demo.main" />
@@ -103,8 +103,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SSUPowerBackApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="SSUPower_Back.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ssupowerback.SSUPowerBackApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ssupowerback.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.SSUPowerBackApplication" />
         <item itemvalue="Application.PowerrangerApplication" />
       </list>
     </recent_temporary>
@@ -119,7 +133,7 @@
       <updated>1683684002542</updated>
       <workItem from="1684487065453" duration="3249000" />
       <workItem from="1684491588112" duration="6450000" />
-      <workItem from="1684502631956" duration="157000" />
+      <workItem from="1684502631956" duration="710000" />
     </task>
     <servers />
   </component>
