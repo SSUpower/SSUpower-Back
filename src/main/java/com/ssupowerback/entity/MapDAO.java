@@ -24,10 +24,11 @@ public class MapDAO {
             mss.put("start", rs.getString(4));
             mss.put("end", rs.getString(5));
             mss.put("day", rs.getString(6));
-            mss.put("_id", rs.getInt(7));
-            mss.put("building_name", rs.getString(8));
-            mss.put("latitude", rs.getDouble(9));
-            mss.put("longitude", rs.getDouble(10));
+            mss.put("mId", rs.getInt(7));
+            mss.put("_id", rs.getInt(8));
+            mss.put("building_name", rs.getString(9));
+            mss.put("latitude", rs.getDouble(10));
+            mss.put("longitude", rs.getDouble(11));
             return mss;
         });
     }
