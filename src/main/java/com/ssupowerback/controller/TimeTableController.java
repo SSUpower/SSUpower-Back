@@ -17,8 +17,8 @@ public class TimeTableController {
     public TimeTableController(TimeTableDAO timetableDAO) {
         this.timetableDAO = timetableDAO;
     }
-    @GetMapping("/{mId}/select")
-    public List<Map<String, ?>> getTimeTable(@PathVariable String mId) {
+    @PostMapping("/{mId}/select")
+    public List<Map<String, ?>> getTimeTable(@PathVariable @RequestBody String mId) {
         return timetableDAO.selectTimeTable(mId);
     }
 
