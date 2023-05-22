@@ -19,7 +19,7 @@ public class TimeTableDAO {
     @Autowired
     JdbcTemplate jt;
 
-    public List<Map<String, ?>> selectTimeTable(String mId) {
+    public List<Map<String, ?>> selectTimeTable(Integer mId) {
         return jt.query("SELECT * FROM school_db.timetable WHERE mId = ?;", new Object[]{mId}, (rs, rowNum) -> {
             Map<String, Object> temptable = new HashMap<>();
             temptable.put("room", '0' + rs.getString(1) + rs.getString(2));
@@ -28,7 +28,7 @@ public class TimeTableDAO {
             temptable.put("startTime", rs.getString(4));
             temptable.put("endTime", rs.getString(5));
             temptable.put("day", rs.getString(6));
-            //temptable.put("mId", rs.getString(7));
+            temptable.put("mId", rs.getInt(7));
 
             return temptable;
         });
@@ -63,7 +63,7 @@ public class TimeTableDAO {
             preparedStatement.execute();
         });
     }
-    public void deleteTimetable(String subject, String mId) {
+    public void deleteTimetable(String subject, Integer mId) {
         String queryString = "DELETE FROM school_db.timetable WHERE school_db.timetable.subject = ? and school_db.timetable.mId = ?";
         jt.update(queryString, subject);
     }

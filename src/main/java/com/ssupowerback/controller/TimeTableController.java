@@ -18,17 +18,18 @@ public class TimeTableController {
         this.timetableDAO = timetableDAO;
     }
     @PostMapping("/{mId}/select")
-    public List<Map<String, ?>> getTimeTable(@PathVariable @RequestBody String mId) {
+    public List<Map<String, ?>> getTimeTable(@PathVariable("mId") Integer mId) {
         return timetableDAO.selectTimeTable(mId);
     }
 
+
     @PostMapping("/{mId}/insert")
-    public List<Map<String, ?>> setTimeTable(@PathVariable String mId, @RequestBody Map<String, String> Submit) {
+    public List<Map<String, ?>> setTimeTable(@PathVariable Integer mId, @RequestBody Map<String, String> Submit) {
         timetableDAO.insertTimeTable(Submit);
         return timetableDAO.selectTimeTable(mId);
     }
     @DeleteMapping("/delete/{mId}/{subject}")
-    public List<Map<String, ?>> delTimetable(@PathVariable String mId, @PathVariable String subject){
+    public List<Map<String, ?>> delTimetable(@PathVariable Integer mId, @PathVariable String subject){
         timetableDAO.deleteTimetable(subject, mId);
         return timetableDAO.selectTimeTable(mId);
     }
