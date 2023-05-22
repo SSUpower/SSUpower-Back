@@ -72,7 +72,10 @@ public class MemberController {
                 return ResponseEntity.ok(memberService.save(member));
             }
         } catch (ConstraintViolationException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Null value or validation error");
+            if(member.getName()==null)
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Null value");
+            else
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("validation error");
         }
     }
 
