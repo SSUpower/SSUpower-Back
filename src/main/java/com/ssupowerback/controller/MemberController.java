@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.regex.Pattern;
 
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 @RequiredArgsConstructor
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -57,40 +61,53 @@ public class MemberController {
             return null;
         }
 }
-
-
     @PostMapping("/join")
-    public Long create(@RequestBody Member member) {
+    public ResponseEntity<?> create(@RequestBody Member member) {
         try {
-            /**
-             * Null value는 바로 try-catch 예외처리
-             */
-            if (validateDuplicateMember(member)){
-                /**
-                 *  중복회원 검사
-                 */
-                return null;
+            if (validateDuplicateMember(member)) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Duplicate member");
+            } else if (!isValidEmail(member.getEmail())) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid email format");
+            } else 
+                return ResponseEntity.ok(memberService.save(member));
             }
-            else if(isValidEmail(member.getEmail())==false){
-                /**
-                 * 유효 이메일 형식 검사
-                 */
-                return -2L;
-            }
-            else {
-                /**
-                 * All conditions passed
-                 */
-                return memberService.save(member);
-            }
-        }
-        catch (ConstraintViolationException e) {
-            /**
-             * Null value(공백포함) 유무 검사
-             */
-            return -1L;
+        } catch (ConstraintViolationException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Null value or validation error");
         }
     }
+
+//    @PostMapping("/join")
+//    public Long create(@RequestBody Member member) {
+//        try {
+//            /**
+//             * Null value는 바로 try-catch 예외처리
+//             */
+//            if (validateDuplicateMember(member)){
+//                /**
+//                 *  중복회원 검사
+//                 */
+//                return null;
+//            }
+//            else if(isValidEmail(member.getEmail())==false){
+//                /**
+//                 * 유효 이메일 형식 검사
+//                 */
+//                return -2L;
+//            }
+//            else {
+//                /**
+//                 * All conditions passed
+//                 */
+//                return memberService.save(member);
+//            }
+//        }
+//        catch (ConstraintViolationException e) {
+//            /**
+//             * Null value(공백포함) 유무 검사
+//             */
+//            return -1L;
+//        }
+//    }
     private boolean validateDuplicateMember(Member member) {
         if(memberJpaRepository.findByEmail(member.getEmail())
                 .isPresent()){
