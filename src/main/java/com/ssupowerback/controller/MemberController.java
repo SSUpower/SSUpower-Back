@@ -2,19 +2,17 @@ package com.ssupowerback.controller;
 
 import com.ssupowerback.entity.Member;
 import com.ssupowerback.entity.MemberLoginDTO;
+import com.ssupowerback.exception.ErrorResponse;
 import com.ssupowerback.repository.MemberJpaRepository;
 import com.ssupowerback.service.MemberService;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.regex.Pattern;
-
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 @RequiredArgsConstructor
 @RestController
@@ -61,22 +59,22 @@ public class MemberController {
             return null;
         }
 }
+
     @PostMapping("/join")
-    public ResponseEntity<?> create(@RequestBody Member member) {
-        try {
+    public ResponseEntity<?> join(@Valid @RequestBody Member member) {
             if (validateDuplicateMember(member)) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Duplicate member");
+                ErrorResponse errorResponse = ErrorResponse.of(HttpStatus.CONFLICT, "이미 등록된 회원입니다.");
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
             } else if (!isValidEmail(member.getEmail())) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid email format");
+                ErrorResponse errorResponse = ErrorResponse.of(HttpStatus.BAD_REQUEST, "유효하지 않은 이메일 주소입니다.");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
             } else {
-                return ResponseEntity.ok(memberService.save(member));
+                /**
+                 * 회원가입 성공
+                 */
+                Long memberId = memberService.save(member);
+                return ResponseEntity.ok(memberId);
             }
-        } catch (ConstraintViolationException e) {
-            if(member.getName()==null)
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Null value");
-            else
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("validation error");
-        }
     }
 
 //    @PostMapping("/join")

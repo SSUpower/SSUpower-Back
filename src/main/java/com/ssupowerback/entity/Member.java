@@ -10,19 +10,22 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 public class Member {
+    /**
+     * 모든 attribute는 null을 허용하지 않는다
+     */
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    @NotBlank(message = "이메일을 입력해주세요.")
+    @NotBlank
     private String email;
     @Column
-    @NotBlank(message = "이름을 입력해주세요.")
+    @NotBlank
     private String name;
     @Column
-    @NotBlank(message = "비밀번호를 입력해주세요.")
+    @NotBlank
     private String password;
     @Column
-    @NotBlank(message = "학교정보를 입력해주세요.")
+    @NotBlank
     private String school;
 
     @Builder
