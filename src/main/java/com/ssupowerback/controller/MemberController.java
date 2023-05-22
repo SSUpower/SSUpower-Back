@@ -62,12 +62,13 @@ public class MemberController {
 
     @PostMapping("/join")
     public ResponseEntity<?> join(@Valid @RequestBody Member member) {
-            if (validateDuplicateMember(member)) {
-                ErrorResponse errorResponse = ErrorResponse.of(HttpStatus.CONFLICT, "이미 등록된 회원입니다.");
-                return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
-            } else if (!isValidEmail(member.getEmail())) {
+            if (!isValidEmail(member.getEmail())) {
                 ErrorResponse errorResponse = ErrorResponse.of(HttpStatus.BAD_REQUEST, "유효하지 않은 이메일 주소입니다.");
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+            }
+            else if (validateDuplicateMember(member)) {
+                ErrorResponse errorResponse = ErrorResponse.of(HttpStatus.CONFLICT, "이미 등록된 회원입니다.");
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
             } else {
                 /**
                  * 회원가입 성공

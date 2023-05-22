@@ -4,12 +4,10 @@ import org.springframework.http.HttpStatus;
 
 public class ErrorResponse {
     /**
-     * HTTP ErrorCode & ErrorMessage를 customize하여 Client에게 전송할 수 있도록 함
+     * HTTP ErrorCode & ErrorMessage를 Client에게 전송할 수 있도록 함
      */
     private int statusCode;
     private String message;
-
-    // 생성자, getter, setter 생략
 
     public int getStatusCode() {
         return statusCode;
