@@ -16,17 +16,22 @@ public class Member {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String school;
+
     @Builder
-    public Member(Long id,String email, String name, String password) {
+    public Member(Long id,String email, String name, String password,String school) {
         this.id = id;
         this.email=email;
         this.name=name;
         this.password=password;
+        this.school=school;
     }
 
-    public void update(String email, String name, String password) {
+    public void update(String email, String name, String password,String school) {
         this.email=email;
         this.name=name;
         this.password=password;
+        this.school=school;
     }
 }

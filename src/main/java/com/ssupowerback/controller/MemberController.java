@@ -59,7 +59,7 @@ public class MemberController {
         /**
          *  중복회원 검사
          */
-        if(validateDuplicateMember(member)) {
+        if(validateDuplicateMember(member) && validateNullValue(member)) {
             return memberService.save(member);
         }else {
             return null;
@@ -71,6 +71,19 @@ public class MemberController {
                 .isPresent()){
             return false;
         }else return true;
+    }
+
+    private boolean validateNullValue(Member member) {
+        if(
+        member.getEmail()!=null ||
+        member.getName()!=null ||
+        member.getPassword()!=null ||
+        member.getSchool()!= null) {
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     @GetMapping("/member/{id}")
