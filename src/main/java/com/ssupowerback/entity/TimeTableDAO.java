@@ -19,11 +19,10 @@ public class TimeTableDAO {
     @Autowired
     JdbcTemplate jt;
 
-    public List<Map<String, ?>> selectTimeTable() {
-
-        return jt.query("SELECT * FROM school_db.timetable;", (rs, rowNum) -> {
+    public List<Map<String, ?>> selectTimeTable(String mId) {
+        return jt.query("SELECT * FROM school_db.timetable WHERE mId = ?;", new Object[]{mId}, (rs, rowNum) -> {
             Map<String, Object> temptable = new HashMap<>();
-            temptable.put("room", '0'+ rs.getString(1) + rs.getString(2));
+            temptable.put("room", '0' + rs.getString(1) + rs.getString(2));
             //temptable.put("classID", rs.getInt(2));
             temptable.put("subject", rs.getString(3));
             temptable.put("startTime", rs.getString(4));
@@ -31,10 +30,10 @@ public class TimeTableDAO {
             temptable.put("day", rs.getString(6));
             temptable.put("mId", rs.getString(7));
 
-
             return temptable;
         });
     }
+
     public void insertTimeTable(Map<String, ?> timeTableData) {
         String query = "INSERT INTO school_db.timetable (school_db.timetable.bId, school_db.timetable.cId, school_db.timetable.object, school_db.timetable.start, school_db.timetable.end, school_db.timetable.day, school_db.timetable.mId) VALUES (?, ?, ?, ?, ?, ?, ?)";
         jt.update(query, (PreparedStatement preparedStatement) -> {
@@ -64,8 +63,8 @@ public class TimeTableDAO {
             preparedStatement.execute();
         });
     }
-    public void deleteTimetable(String subject) {
-        String queryString = "DELETE FROM school_db.timetable WHERE school_db.timetable.subject = ?";
+    public void deleteTimetable(String subject, String mId) {
+        String queryString = "DELETE FROM school_db.timetable WHERE school_db.timetable.subject = ? and school_db.timetable.mId = ?";
         jt.update(queryString, subject);
     }
 }
