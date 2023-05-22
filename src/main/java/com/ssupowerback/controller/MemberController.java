@@ -4,8 +4,13 @@ import com.ssupowerback.entity.Member;
 import com.ssupowerback.entity.MemberLoginDTO;
 import com.ssupowerback.repository.MemberJpaRepository;
 import com.ssupowerback.service.MemberService;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.regex.Pattern;
 
 @RequiredArgsConstructor
 @RestController
@@ -56,34 +61,48 @@ public class MemberController {
 
     @PostMapping("/join")
     public Long create(@RequestBody Member member) {
-        /**
-         *  중복회원 검사
-         */
-        if(validateDuplicateMember(member) && validateNullValue(member)) {
-            return memberService.save(member);
-        }else {
-            return null;
+        try {
+            /**
+             * Null value는 바로 try-catch 예외처리
+             */
+            if (validateDuplicateMember(member)){
+                /**
+                 *  중복회원 검사
+                 */
+                return null;
+            }
+            else if(isValidEmail(member.getEmail())==false){
+                /**
+                 * 유효 이메일 형식 검사
+                 */
+                return -2L;
+            }
+            else {
+                /**
+                 * All conditions passed
+                 */
+                return memberService.save(member);
+            }
+        }
+        catch (ConstraintViolationException e) {
+            /**
+             * Null value(공백포함) 유무 검사
+             */
+            return -1L;
         }
     }
-
     private boolean validateDuplicateMember(Member member) {
         if(memberJpaRepository.findByEmail(member.getEmail())
                 .isPresent()){
-            return false;
-        }else return true;
+            return true;
+        }else return false;
     }
 
-    private boolean validateNullValue(Member member) {
-        if(
-        member.getEmail()!=null ||
-        member.getName()!=null ||
-        member.getPassword()!=null ||
-        member.getSchool()!= null) {
-            return false;
-        }
-        else{
-            return true;
-        }
+    private boolean isValidEmail(String email) {
+        final String EMAIL_PATTERN = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
+
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        return pattern.matcher(email).matches();
     }
 
     @GetMapping("/member/{id}")

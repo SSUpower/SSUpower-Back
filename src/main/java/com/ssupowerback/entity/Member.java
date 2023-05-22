@@ -1,6 +1,9 @@
 package com.ssupowerback.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.ColumnDefault;
 import lombok.*;
 
 @Entity
@@ -9,14 +12,17 @@ import lombok.*;
 public class Member {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+    @Column
+    @NotBlank(message = "Null값은 허용되지 않습니다.")
     private String email;
-    @Column(nullable = false)
+    @Column
+    @NotBlank(message = "Null값은 허용되지 않습니다.")
     private String name;
-    @Column(nullable = false)
+    @Column
+    @NotBlank(message = "Null값은 허용되지 않습니다.")
     private String password;
-
-    @Column(nullable = false)
+    @Column
+    @NotBlank(message = "Null값은 허용되지 않습니다.")
     private String school;
 
     @Builder
