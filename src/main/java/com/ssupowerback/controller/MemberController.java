@@ -68,7 +68,7 @@ public class MemberController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Duplicate member");
             } else if (!isValidEmail(member.getEmail())) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid email format");
-            } else 
+            } else {
                 return ResponseEntity.ok(memberService.save(member));
             }
         } catch (ConstraintViolationException e) {
