@@ -28,7 +28,7 @@ public class TimeTableDAO {
             temptable.put("startTime", rs.getString(4));
             temptable.put("endTime", rs.getString(5));
             temptable.put("day", rs.getString(6));
-            temptable.put("mId", rs.getString(7));
+            //temptable.put("mId", rs.getString(7));
 
             return temptable;
         });
