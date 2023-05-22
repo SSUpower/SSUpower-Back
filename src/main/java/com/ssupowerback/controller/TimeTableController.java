@@ -17,14 +17,19 @@ public class TimeTableController {
     public TimeTableController(TimeTableDAO timetableDAO) {
         this.timetableDAO = timetableDAO;
     }
-    @GetMapping("/select")
+    @GetMapping("/{mId}/select")
     public List<Map<String, ?>> getTimeTable() {
         return timetableDAO.selectTimeTable();
     }
 
-    @PostMapping("/insert")
+    @PostMapping("/{mId}/insert")
     public List<Map<String, ?>> setTimeTable(@RequestBody Map<String, String> Submit) {
         timetableDAO.insertTimeTable(Submit);
+        return timetableDAO.selectTimeTable();
+    }
+    @DeleteMapping("/delete/{mId}/{subject}")
+    public List<Map<String, ?>> delTimetable(@PathVariable String subject){
+        timetableDAO.deleteTimetable(subject);
         return timetableDAO.selectTimeTable();
     }
 }
