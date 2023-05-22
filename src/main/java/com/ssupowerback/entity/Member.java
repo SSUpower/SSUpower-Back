@@ -13,16 +13,16 @@ public class Member {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    @NotBlank(message = "Null값은 허용되지 않습니다.")
+    @NotBlank(message = "이메일을 입력해주세요.")
     private String email;
     @Column
-    @NotBlank(message = "Null값은 허용되지 않습니다.")
+    @NotBlank(message = "이름을 입력해주세요.")
     private String name;
     @Column
-    @NotBlank(message = "Null값은 허용되지 않습니다.")
+    @NotBlank(message = "비밀번호를 입력해주세요.")
     private String password;
     @Column
-    @NotBlank(message = "Null값은 허용되지 않습니다.")
+    @NotBlank(message = "학교정보를 입력해주세요.")
     private String school;
 
     @Builder
