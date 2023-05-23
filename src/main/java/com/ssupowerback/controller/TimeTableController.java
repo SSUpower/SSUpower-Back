@@ -1,6 +1,7 @@
 package com.ssupowerback.controller;
 
 import com.ssupowerback.entity.TimeTableDAO;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,9 +19,15 @@ public class TimeTableController {
         this.timetableDAO = timetableDAO;
     }
     @PostMapping("/{mId}/select")
-    public List<Map<String, ?>> getTimeTable(@PathVariable  @RequestBody Integer mId) {
-        return timetableDAO.selectTimeTable(mId);
+    public ResponseEntity<List<Map<String, ?>>> getTimeTable(@PathVariable @RequestBody Integer mId) {
+        List<Map<String, ?>> timeTableList = timetableDAO.selectTimeTable(mId);
+        if (timeTableList.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok().body(timeTableList);
+        }
     }
+
 
 
 
