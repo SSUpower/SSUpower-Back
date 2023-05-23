@@ -38,21 +38,22 @@ public class TimeTableDAO {
 
     public void insertTimeTable(Map<String, ?> timeTableData) {
         String query = "INSERT INTO school_db.timetable (school_db.timetable.bId, school_db.timetable.cId, school_db.timetable.object, school_db.timetable.start, school_db.timetable.end, school_db.timetable.day, school_db.timetable.mId) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
         jt.update(query, (PreparedStatement preparedStatement) -> {
             String room = (String) timeTableData.get("room");
 
             String class_id = "";
-            String building_id = "";
+            Integer building_id = 0;
 
             if (room.length() == 5 ) {//
                 class_id = room.substring(2, 5);
-                building_id = room.substring(0, 2);
+                building_id = Integer.parseInt(room.substring(0, 2));
             } else if (room.length() == 6) { //021 303
                 class_id = room.substring(3, 6);
-                building_id = room.substring(0, 3);
+                building_id = Integer.parseInt(room.substring(0, 3));
             }
 
-            preparedStatement.setString(1, building_id);
+            preparedStatement.setInt(1, building_id);
             preparedStatement.setString(2, class_id);
             preparedStatement.setString(3, (String) timeTableData.get("subject"));
             preparedStatement.setString(4, (String) timeTableData.get("startTime"));
