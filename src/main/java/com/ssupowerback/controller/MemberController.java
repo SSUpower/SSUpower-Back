@@ -2,10 +2,17 @@ package com.ssupowerback.controller;
 
 import com.ssupowerback.entity.Member;
 import com.ssupowerback.entity.MemberLoginDTO;
+import com.ssupowerback.exception.ErrorResponse;
 import com.ssupowerback.repository.MemberJpaRepository;
 import com.ssupowerback.service.MemberService;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.regex.Pattern;
 
 @RequiredArgsConstructor
 @RestController
@@ -37,7 +44,6 @@ public class MemberController {
                 /**
                  *로그인 실패 case 1 : 비밀번호 불일치시 email값이 null인 임시객체 반환
                  */
-//                Member temp = new Member(null, member.getName(), member.getPassword());
                 Member temp = Member.builder()
                         .id(member.getId())
                         .email(null)
@@ -53,24 +59,36 @@ public class MemberController {
         }
 }
 
-
     @PostMapping("/join")
-    public Long create(@RequestBody Member member) {
-        /**
-         *  중복회원 검사
-         */
-        if(validateDuplicateMember(member)) {
-            return memberService.save(member);
-        }else {
-            return null;
-        }
+    public ResponseEntity<?> join(@Valid @RequestBody Member member) {
+            if (!isValidEmail(member.getEmail())) {
+                ErrorResponse errorResponse = ErrorResponse.of(HttpStatus.BAD_REQUEST, "유효하지 않은 이메일 주소입니다.");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+            }
+            else if (validateDuplicateMember(member)) {
+                ErrorResponse errorResponse = ErrorResponse.of(HttpStatus.CONFLICT, "이미 등록된 회원입니다.");
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+            } else {
+                /**
+                 * 회원가입 성공
+                 */
+                Long memberId = memberService.save(member);
+                return ResponseEntity.ok(memberId);
+            }
     }
 
     private boolean validateDuplicateMember(Member member) {
         if(memberJpaRepository.findByEmail(member.getEmail())
                 .isPresent()){
-            return false;
-        }else return true;
+            return true;
+        }else return false;
+    }
+
+    private boolean isValidEmail(String email) {
+        final String EMAIL_PATTERN = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
+
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        return pattern.matcher(email).matches();
     }
 
     @GetMapping("/member/{id}")
