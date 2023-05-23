@@ -37,7 +37,7 @@ public class TimeTableController {
     }
 
     @DeleteMapping("/{mId}/{Submit}/delete")
-    public List<Map<String, ?>> delTimetable(@PathVariable Integer mId, @PathVariable String Submit){
+    public List<Map<String, ?>> delTimetable(@PathVariable ("mId") Integer mId, @PathVariable ("Submit") String Submit){
         timetableDAO.deleteTimetable(Submit, mId);
         return timetableDAO.selectTimeTable(mId);
     }
