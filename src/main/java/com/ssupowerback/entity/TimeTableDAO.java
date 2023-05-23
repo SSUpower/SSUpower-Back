@@ -68,11 +68,11 @@ public class TimeTableDAO {
     }
 
     public void deleteTimetable(Map<String, ?> timeTableData, Integer mId) {
-        String queryString = "DELETE FROM school_db.timetable WHERE object = ? AND mId = ? AND day = ?";
+        String queryString = "DELETE FROM school_db.timetable WHERE school_db.timetable.object = ? AND school_db.timetable.mId = ? AND school_db.timetable.day = ?";
         String subject = (String)timeTableData.get("subject");
         String day = (String)timeTableData.get("day");
         jt.update(queryString, subject, mId, day);
-    }
+    }ㅎ
 
 }
 
