@@ -1,6 +1,7 @@
 package com.ssupowerback.controller;
 
 import com.ssupowerback.entity.MapDAO;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,9 +19,9 @@ public class MapController {
     }
 
     @GetMapping("/select")
-
-    public List<Map<String, ?>> getMap() {
-
-        return mapDAO.selectAll();
+    public ResponseEntity<List<Map<String, ?>>> getMap() {
+        List<Map<String, ?>> mapList = mapDAO.selectAll();
+        return ResponseEntity.ok().body(mapList);
     }
+
 }
