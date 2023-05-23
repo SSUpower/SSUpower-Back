@@ -45,7 +45,7 @@ public class TimeTableDAO {
             String class_id = "";
             Integer building_id = 0;
 
-            if (room.length() == 5 ) {//
+            if (room.length() == 5) {//
                 class_id = room.substring(2, 5);
                 building_id = Integer.parseInt(room.substring(0, 2));
             } else if (room.length() == 6) { //021 303
@@ -66,8 +66,15 @@ public class TimeTableDAO {
             preparedStatement.execute();
         });
     }
-    public void deleteTimetable(String subject, Integer mId) {
-        String queryString = "DELETE FROM school_db.timetable WHERE school_db.timetable.subject = ? and school_db.timetable.mId = ?";
-        jt.update(queryString, subject);
+
+    public void deleteTimetable(String Submit, Integer mId) {
+        int length = Submit.length();
+        String subject =  Submit.substring(0, length - 4);
+        String day = Submit.substring(length - 3);
+
+        String queryString = "DELETE FROM school_db.timetable WHERE school_db.timetable.subject = ? and school_db.timetable.mId = ? and school_db.timetable.day = ?";
+
+        jt.update(queryString, subject, mId, day);
     }
 }
+
