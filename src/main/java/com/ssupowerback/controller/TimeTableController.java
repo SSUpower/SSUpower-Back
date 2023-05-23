@@ -30,7 +30,7 @@ public class TimeTableController {
 
 
     @PostMapping("/{mId}/insert")
-    public ResponseEntity<List<Map<String, ?>>> setTimeTable(@PathVariable Integer mId, @RequestBody Map<String, String> Submit) {
+    public ResponseEntity<List<Map<String, ?>>> setTimeTable(@PathVariable("mId") Integer mId, @RequestBody Map<String, Object> Submit) {
         timetableDAO.insertTimeTable(Submit);
         List<Map<String, ?>> timetable = timetableDAO.selectTimeTable(mId);
         return ResponseEntity.ok(timetable);
