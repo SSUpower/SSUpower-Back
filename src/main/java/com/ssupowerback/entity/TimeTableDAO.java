@@ -69,8 +69,8 @@ public class TimeTableDAO {
 
     public void deleteTimetable(String Submit, Integer mId) {
         int length = Submit.length();
-        String subject =  Submit.substring(0, length - 5);
-        String day = Submit.substring(length - 4);
+        String subject =  Submit.substring(0, length - 3);
+        String day = Submit.substring(length -3);
 
         String queryString = "DELETE FROM school_db.timetable WHERE school_db.timetable.subject = ? and school_db.timetable.mId = ? and school_db.timetable.day = ?";
 
