@@ -16,7 +16,7 @@ public class MapDAO {
 
     public List<Map<String, ?>> selectAll() {
 
-        return jt.query("SELECT * FROM school_db.timetable, school_db.building where school_db.timetable.buildingID = school_db.building._id;", (rs, rowNum) -> {
+        return jt.query("SELECT * FROM school_db.timetable, school_db.building where school_db.timetable.bId = school_db.building.bId;", (rs, rowNum) -> {
             Map<String, Object> mss = new HashMap<>();
             mss.put("buildingId", rs.getInt(1));
             mss.put("classID", rs.getString(2));
@@ -24,10 +24,11 @@ public class MapDAO {
             mss.put("start", rs.getString(4));
             mss.put("end", rs.getString(5));
             mss.put("day", rs.getString(6));
-            mss.put("_id", rs.getInt(7));
-            mss.put("building_name", rs.getString(8));
-            mss.put("latitude", rs.getDouble(9));
-            mss.put("longitude", rs.getDouble(10));
+            mss.put("mId", rs.getInt(7));
+            mss.put("_id", rs.getInt(8));
+            mss.put("building_name", rs.getString(9));
+            mss.put("latitude", rs.getDouble(10));
+            mss.put("longitude", rs.getDouble(11));
             return mss;
         });
     }
