@@ -19,7 +19,7 @@ public class TimeTableController {
         this.timetableDAO = timetableDAO;
     }
     @PostMapping("/{mId}/select")
-    public ResponseEntity<List<Map<String, ?>>> getTimeTable(@PathVariable @RequestBody Integer mId) {
+    public ResponseEntity<List<Map<String, ?>>> getTimeTable(@PathVariable("mId") Integer mId) {
         List<Map<String, ?>> timeTableList = timetableDAO.selectTimeTable(mId);
         if (timeTableList.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -29,14 +29,14 @@ public class TimeTableController {
     }
 
 
-
-
     @PostMapping("/{mId}/insert")
-    public List<Map<String, ?>> setTimeTable(@PathVariable Integer mId, @RequestBody Map<String, String> Submit) {
+    public ResponseEntity<List<Map<String, ?>>> setTimeTable(@PathVariable Integer mId, @RequestBody Map<String, String> Submit) {
         timetableDAO.insertTimeTable(Submit);
-        return timetableDAO.selectTimeTable(mId);
+        List<Map<String, ?>> timetable = timetableDAO.selectTimeTable(mId);
+        return ResponseEntity.ok(timetable);
     }
-    @DeleteMapping("/delete/{mId}/{subject}")
+
+    @DeleteMapping("/{mId}/{subject}/delete")
     public List<Map<String, ?>> delTimetable(@PathVariable Integer mId, @PathVariable String subject){
         timetableDAO.deleteTimetable(subject, mId);
         return timetableDAO.selectTimeTable(mId);
