@@ -44,7 +44,6 @@ public class MemberController {
                 /**
                  *로그인 실패 case 1 : 비밀번호 불일치시 email값이 null인 임시객체 반환
                  */
-//                Member temp = new Member(null, member.getName(), member.getPassword());
                 Member temp = Member.builder()
                         .id(member.getId())
                         .email(null)
@@ -78,38 +77,6 @@ public class MemberController {
             }
     }
 
-//    @PostMapping("/join")
-//    public Long create(@RequestBody Member member) {
-//        try {
-//            /**
-//             * Null value는 바로 try-catch 예외처리
-//             */
-//            if (validateDuplicateMember(member)){
-//                /**
-//                 *  중복회원 검사
-//                 */
-//                return null;
-//            }
-//            else if(isValidEmail(member.getEmail())==false){
-//                /**
-//                 * 유효 이메일 형식 검사
-//                 */
-//                return -2L;
-//            }
-//            else {
-//                /**
-//                 * All conditions passed
-//                 */
-//                return memberService.save(member);
-//            }
-//        }
-//        catch (ConstraintViolationException e) {
-//            /**
-//             * Null value(공백포함) 유무 검사
-//             */
-//            return -1L;
-//        }
-//    }
     private boolean validateDuplicateMember(Member member) {
         if(memberJpaRepository.findByEmail(member.getEmail())
                 .isPresent()){
