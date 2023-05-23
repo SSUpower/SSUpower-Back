@@ -72,7 +72,7 @@ public class TimeTableDAO {
         String subject =  Submit.substring(0, length - 3);
         String day = Submit.substring(length -3);
 
-        String queryString = "DELETE FROM school_db.timetable WHERE school_db.timetable.subject = ? and school_db.timetable.mId = ? and school_db.timetable.day = ?";
+        String queryString = "DELETE FROM school_db.timetable WHERE school_db.timetable.object = ? and school_db.timetable.mId = ? and school_db.timetable.day = ?";
 
         jt.update(queryString, subject, mId, day);
     }
