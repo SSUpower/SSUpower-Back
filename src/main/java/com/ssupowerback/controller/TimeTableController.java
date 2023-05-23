@@ -20,7 +20,7 @@ public class TimeTableController {
     public TimeTableController(TimeTableDAO timetableDAO) {
         this.timetableDAO = timetableDAO;
     }
-    @GetMapping("/{mId}/select")
+    @PostMapping("/{mId}/select")
     public ResponseEntity<List<Map<String, ?>>> getTimeTable(@PathVariable("mId")  Integer mId) {
         List<Map<String, ?>> timeTableList = timetableDAO.selectTimeTable(mId);
         if (timeTableList.isEmpty()) {
