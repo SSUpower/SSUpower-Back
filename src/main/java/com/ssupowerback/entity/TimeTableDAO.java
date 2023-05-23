@@ -20,7 +20,7 @@ public class TimeTableDAO {
     JdbcTemplate jt;
 
     public List<Map<String, ?>> selectTimeTable(Integer mId) {
-        String sql = "SELECT CONCAT('0', bId, cId) AS room, object, start, end, day, mId FROM school_db.timetable WHERE mId = ?";
+        String sql = "SELECT CONCAT('0', school_db.timetable.bId, school_db.timetable.cId) AS room, object, start, end, day, mId FROM school_db.timetable WHERE mId = ?";
 
         return jt.query(sql, new Object[]{mId}, (rs, rowNum) -> {
             Map<String, Object> timeTable = new HashMap<>();
@@ -67,14 +67,12 @@ public class TimeTableDAO {
         });
     }
 
-    public void deleteTimetable(String Submit, Integer mId) {
-        int length = Submit.length();
-        String subject =  Submit.substring(0, length - 3);
-        String day = Submit.substring(length -3);
-
-        String queryString = "DELETE FROM school_db.timetable WHERE school_db.timetable.object = ? and school_db.timetable.mId = ? and school_db.timetable.day = ?";
-
+    public void deleteTimetable(Map<String, ?> timeTableData, Integer mId) {
+        String queryString = "DELETE FROM school_db.timetable WHERE object = ? AND mId = ? AND day = ?";
+        String subject = (String)timeTableData.get("subject");
+        String day = (String)timeTableData.get("day");
         jt.update(queryString, subject, mId, day);
     }
+
 }
 
