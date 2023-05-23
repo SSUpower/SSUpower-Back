@@ -19,7 +19,7 @@ public class MemberService {
     @Transactional
     public Long update(Long id, Member member) {
         Member currentMember = findById(id);
-        currentMember.update(member.getEmail(), member.getName(), member.getPassword());
+        currentMember.update(member.getEmail(), member.getName(), member.getPassword(),member.getSchool());
         return id;
     }
 
