@@ -3,7 +3,9 @@ package com.ssupowerback.controller;
 import com.ssupowerback.entity.TimeTableDAO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriUtils;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 @RestController
@@ -37,9 +39,11 @@ public class TimeTableController {
     }
 
     @DeleteMapping("/{mId}/{Submit}/delete")
-    public ResponseEntity<List<Map<String, ?>>> delTimetable(@PathVariable ("mId") Integer mId, @PathVariable ("Submit") String Submit){
-        timetableDAO.deleteTimetable(Submit, mId);
+    public ResponseEntity<List<Map<String, ?>>> delTimetable(@PathVariable("mId") Integer mId, @PathVariable("Submit") String Submit) {
+        String encodedSubmit = UriUtils.encode(Submit, StandardCharsets.UTF_8);
+        timetableDAO.deleteTimetable(encodedSubmit, mId);
         List<Map<String, ?>> timetable = timetableDAO.selectTimeTable(mId);
         return ResponseEntity.ok(timetable);
     }
+
 }
