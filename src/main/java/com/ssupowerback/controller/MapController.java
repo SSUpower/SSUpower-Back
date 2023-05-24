@@ -1,9 +1,7 @@
 package com.ssupowerback.controller;
 
 import com.ssupowerback.entity.MapDAO;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -17,10 +15,10 @@ public class MapController {
         this.mapDAO = mapDAO;
     }
 
-    @GetMapping("/select")
+    @PostMapping("/{mId}/select")
 
-    public List<Map<String, ?>> getMap() {
+    public List<Map<String, ?>> getMap(@PathVariable("mId") Integer mId) {
 
-        return mapDAO.selectAll();
+        return mapDAO.selectAll(mId);
     }
 }
