@@ -1,7 +1,14 @@
 package com.ssupowerback.controller;
 
 import com.ssupowerback.entity.MapDAO;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.*;
+=======
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+>>>>>>> deltimetable
 
 import java.util.List;
 import java.util.Map;
@@ -20,5 +27,7 @@ public class MapController {
     public List<Map<String, ?>> getMap(@PathVariable("mId") Integer mId) {
 
         return mapDAO.selectAll(mId);
+
     }
+
 }
