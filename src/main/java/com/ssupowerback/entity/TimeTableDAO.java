@@ -72,7 +72,7 @@ public class TimeTableDAO {
         String subject = (String)timeTableData.get("subject");
         String day = (String)timeTableData.get("day");
         jt.update(queryString, subject, mId, day);
-    }ㅎ
+    }
 
 }
 
