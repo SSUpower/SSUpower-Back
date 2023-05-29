@@ -23,11 +23,9 @@ public class MapController {
     }
 
     @PostMapping("/{mId}/select")
-
-    public List<Map<String, ?>> getMap(@PathVariable("mId") Integer mId) {
-
-        return mapDAO.selectAll(mId);
-
+    public ResponseEntity<List<Map<String, ?>>> getMap(@PathVariable("mId") Integer mId) {
+        List<Map<String, ?>> mapList = mapDAO.selectAll(mId);
+        return ResponseEntity.ok().body(mapList);
     }
 
 }
