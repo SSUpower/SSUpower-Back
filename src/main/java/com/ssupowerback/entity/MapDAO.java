@@ -14,9 +14,9 @@ public class MapDAO {
     @Autowired
     JdbcTemplate jt;
 
-    public List<Map<String, ?>> selectAll() {
-
-        return jt.query("SELECT * FROM school_db.timetable, school_db.building where school_db.timetable.bId = school_db.building.bId;", (rs, rowNum) -> {
+    public List<Map<String, ?>> selectAll(Integer mId) {
+        String q = "SELECT * FROM school_db.timetable, school_db.building where school_db.timetable.bId = school_db.building.bId and school_db.timetable.mId = ?;";
+        return jt.query(q, new Object[]{mId}, (rs, rowNum) ->{
             Map<String, Object> mss = new HashMap<>();
             mss.put("buildingId", rs.getInt(1));
             mss.put("classID", rs.getString(2));
