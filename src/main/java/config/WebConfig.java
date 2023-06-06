@@ -9,7 +9,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("https://web-ssupower-front-p8xrq2mlfqixcp0.sel3.cloudtype.app","https://localhost:3030")
+                .allowedOrigins("https://web-ssupower-front-p8xrq2mlfqixcp0.sel3.cloudtype.app","https://localhost:3000")
                 .allowedMethods("*")
                 .allowedHeaders("*")
                 .allowCredentials(true)
