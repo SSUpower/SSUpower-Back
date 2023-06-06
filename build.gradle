@@ -27,6 +27,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.hibernate:hibernate-validator:7.0.5.Final'
+	implementation 'org.seleniumhq.selenium:selenium-java:4.1.2'
 
 }
 
