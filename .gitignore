@@ -1,1 +1,36 @@
-.DS_Store
+# 디렉토리
+/target/
+/bin/
+/out/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Gradle
+.gradle/
+/build/
+
+# Spring Boot
+spring-boot-starter-cache/
+spring-boot-starter-data-elasticsearch/
+spring-boot-starter-data-ldap/
+spring-boot-starter-data-mongodb/
+spring-boot-starter-data-rest/
+spring-boot-starter-remote-shell/
+spring-boot-starter-security/
+spring-boot-starter-test/
+spring-boot-starter-thymeleaf/
+
+# Log files
+log/
+*.log
+
+.DS_store

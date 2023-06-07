@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 @RequiredArgsConstructor
 @RestController
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://web-ssupower-front-p8xrq2mlfqixcp0.sel3.cloudtype.app"})
 public class MemberController {
 
     private final MemberService memberService;
