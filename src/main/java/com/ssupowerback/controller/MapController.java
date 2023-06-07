@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 @RestController
 @RequestMapping("/map")
+@CrossOrigin(origins = {"http://localhost:3000", "https://ssupower.netlify.app"})
 public class MapController {
 
     private final MapDAO mapDAO;
